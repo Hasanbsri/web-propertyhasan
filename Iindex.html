@@ -1,38 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PropertyFinder | Temukan Rumah Impian</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perumahan Modern - Web Property</title>
+  <meta name="description" content="Situs listing perumahan responsive - contoh HTML/CSS/JS" />
+  <style>
+    :root{
+      --bg:#f6f8fb;--card:#ffffff;--muted:#6b7280;--accent:#0ea5a4;--radius:14px;--shadow:0 6px 18px rgba(12,18,30,0.08);--glass:rgba(255,255,255,0.6);--max-width:1200px;
+    }
+    *{box-sizing:border-box}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;margin:0;background:var(--bg);color:#0f172a;-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--max-width);margin:32px auto;padding:0 20px}
+    header{background:linear-gradient(180deg,var(--card),transparent);position:sticky;top:0;z-index:40;backdrop-filter:blur(6px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    nav .links{display:flex;gap:18px;align-items:center}nav a{color:var(--muted);text-decoration:none;font-weight:600}.cta{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;text-decoration:none}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:28px 0}
+    .hero-left h1{font-size:28px;line-height:1.05;margin:0 0 12px}.hero-left p{color:var(--muted);margin:0 0 18px}
+    .search{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:10px}
+    .search input,.search select{border:0;outline:none;padding:10px;font-size:14px}
+    .search button{background:var(--accent);color:white;border:0;padding:10px 16px;border-radius:10px}
+    .filters{display:flex;gap:10px;margin:16px 0;flex-wrap:wrap}.chip{background:transparent;border:1px solid #e6eef0;padding:8px 10px;border-radius:999px;color:var(--muted);font-weight:600}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .card img{width:100%;height:180px;object-fit:cover}.card-body{padding:14px;display:flex;flex-direction:column;gap:8px}
+    .price{font-weight:800;color:#0f172a}.meta{color:var(--muted);font-size:13px}
+    .btn-row{display:flex;gap:8px;margin-top:8px}.btn{flex:1;padding:10px;border-radius:10px;border:0;font-weight:700}.btn-outline{background:transparent;border:1px solid #e6eef0}.favorite{background:#fff7ed}
+    .sidebar{background:linear-gradient(180deg,var(--glass),transparent);padding:16px;border-radius:12px;height:100%}
+    .stat{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
+    footer{padding:28px 0;color:var(--muted);font-size:14px}
+    @media (max-width:1024px){.hero{grid-template-columns:1fr 340px}.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:720px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.nav{padding:10px 0}.search{flex-direction:column}}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal{background:var(--card);max-width:900px;width:100%;border-radius:12px;overflow:hidden}
+    .modal .content{display:grid;grid-template-columns:1fr 360px}.modal img{width:100%;height:340px;object-fit:cover}.close{position:absolute;right:10px;top:10px;background:#fff;padding:6px;border-radius:8px;border:0}
+    .muted{color:var(--muted)}.flex{display:flex;align-items:center}.space{height:18px}
+  </style>
 </head>
 <body>
   <header>
-    <h1>🏡 PropertyFinder</h1>
-    <input type="text" id="search" placeholder="Cari properti..." />
-    <button id="theme-toggle">🌙</button>
-  </header>
-
-  <main id="property-list">
-    <!-- Properti akan ditampilkan lewat JS -->
-  </main>
-
-  <!-- Modal Detail Properti -->
-  <div id="modal" class="hidden">
-    <div class="modal-content">
-      <span id="close-modal">&times;</span>
-      <img id="modal-img" src="" alt="">
-      <h2 id="modal-title"></h2>
-      <p id="modal-location"></p>
-      <p id="modal-price"></p>
-      <p id="modal-desc"></p>
+    <div class="container nav">
+      <div class="brand"><div class="logo">PG</div><div><div style="font-weight:800">PerumahanGrid</div><div style="font-size:12px;color:var(--muted)">Hunian nyaman & modern</div></div></div>
+      <nav class="flex"><div class="links"><a href="#list">Listing</a><a href="#about">Tentang</a><a href="#contact">Kontak</a></div><a class="cta" href="https://wa.me/6281234567890?text=Halo%20saya%20tertarik%20dengan%20perumahan%20Anda" target="_blank">Hubungi</a></nav>
     </div>
-  </div>
-
-  <footer>
-    <p>© 2025 PropertyFinder. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Temukan rumah impianmu di lingkungan Karawang</h1>
+        <p class="muted">Listing terbaru — mudah dicari, fasilitas lengkap, lokasi strategis.</p>
+        <div class="search"><input id="q" placeholder="Cari: lokasi, tipe, harga..." /><select id="type"><option value="all">Semua Tipe</option><option value="rumah">Rumah</option><option value="cluster">Cluster</option><option value="ruko">Ruko</option></select><button id="searchBtn">Cari</button></div>
+        <div class="filters"><div class="chip">3 Kamar</div><div class="chip">2 Kamar Mandi</div><div class="chip">Luas ≥ 90 m²</div><div class="chip">Dekat Sekolah</div></div>
+        <div id="list"><div class="grid" id="propertiesGrid"></div></div>
+      </div>
+      <aside class="sidebar">
+        <h3 style="margin:0 0 8px">Ringkasan</h3>
+        <div class="stat"><span class="muted">Total Listing</span><strong id="totalListings">0</strong></div>
+        <div class="stat"><span class="muted">Tipe Terpopuler</span><strong>Cluster</strong></div>
+        <div class="space"></div>
+        <h4 style="margin:0 0 8px">Kontak Sales</h4>
+        <div style="font-weight:800">HJ Hasan Basri</div><div class="muted">+62 812-1192-2590</div>
+        <div style="height:14px"></div>
+        <a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20info%20perumahan" target="_blank" class="btn cta" style="display:block;text-align:center">Chat via WhatsApp</a>
+      </aside>
+    </section>
+    <section style="margin-top:28px"><h2>Kenapa pilih kami?</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"><div class="card" style="padding:16px"><strong>Fasilitas Lengkap</strong><div class="muted">Taman, playground, CCTV, akses 24 jam</div></div><div class="card" style="padding:16px"><strong>Proses Mudah</strong><div class="muted">Pembiayaan & konsultasi KPR</div></div><div class="card" style="padding:16px"><strong>Legal Terjamin</strong><div class="muted">SHM / AJB tersedia</div></div></div></section>
+    <section id="about" style="margin-top:28px"><h3>Tentang PerumahanGrid</h3><p class="muted">PerumahanGrid membantu mempermudah pencarian hunian — mulai dari rumah tapak, cluster, hingga ruko. Situs contoh ini dibuat untuk keperluan demo website property responsif.</p></section>
+    <section id="contact" style="margin-top:22px"><h3>Kontak & Kunjungan</h3><form action="https://wa.me/6281234567890" method="get" target="_blank" style="display:flex;flex-direction:column;gap:8px;max-width:500px"><input name="text" placeholder="Tulis pesan Anda untuk sales" style="padding:10px;border-radius:8px;border:1px solid #e6eef0" required><button class="btn cta" type="submit" style="width:160px">Kirim ke WhatsApp</button></form></section>
+  </main>
+  <footer><div class="container" style="display:flex;justify-content:space-between;align-items:center"><div>© 2025 PerumahanGrid — Semua hak dilindungi</div><div class="muted">Dibuat dengan ❤️ untuk demo</div></div></footer>
+  <script>
+    const properties=[{id:1,title:'Cluster Melati - 3KT Modern',price:'Rp 850.000.000',desc:'Cluster nyaman dekat sekolah & pusat perbelanjaan.',img:'https://images.unsplash.com/photo-1560185127-6c3b6f1b0a6b?auto=format&fit=crop&w=1200&q=60'},{id:2,title:'Rumah Asri Tipe 90',price:'Rp 1.250.000.000',desc:'Rumah 2 lantai, halaman luas, garasi 2 mobil.',img:'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=60'},{id:3,title:'Ruko Strategis di Jalan Raya',price:'Rp 2.000.000.000',desc:'Cocok untuk usaha & kantor, lokasi ramai.',img:'https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=1200&q=60'},{id:4,title:'Perumahan Griya Indah',price:'Rp 780.000.000',desc:'Akses tol dekat, taman central park.',img:'https://images.unsplash.com/photo-1572120360610-d971b9b3f58f?auto=format&fit=crop&w=1200&q=60'},{id:5,title:'Cluster Anggrek - Promo DP Ringan',price:'Rp 695.000.000',desc:'Promo DP 5% untuk 10 pembeli pertama.',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=60'},{id:6,title:'Villa Minimalis - Residensi',price:'Rp 3.500.000.000',desc:'Villa premium dengan private pool & view.',img:'https://images.unsplash.com/photo-1505691723518-36a4c2b2d6d8?auto=format&fit=crop&w=1200&q=60'}];
+    const grid=document.getElementById('propertiesGrid');const totalListings=document.getElementById('totalListings');
+    function renderProperties(list){grid.innerHTML='';list.forEach(p=>{const el=document.createElement('div');el.className='card';el.innerHTML=`<img src="${p.img}" alt="${p.title}"/><div class="card-body"><div style=\"display:flex;justify-content:space-between;align-items:center\"><div><div style=\"font-weight:700\">${p.title}</div><div class=\"meta\">${p.desc}</div></div><div style=\"text-align:right\"><div class=\"price\">${p.price}</div><div class=\"muted\" style=\"font-size:12px\">Lihat detail →</div></div></div><div class=\"btn-row\"><button class=\"btn btn-outline\" onclick=\"window.open('https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(p.title)}')\">Hubungi</button><button class=\"btn favorite\">♡ Simpan</button></div></div>`;grid.appendChild(el)});totalListings.textContent=list.length;}
+    document.getElementById('searchBtn').addEventListener('click',()=>{const q=document.getElementById('q').value.toLowerCase();const type=document.getElementById('type').value;const filtered=properties.filter(p=>{const inQ=p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q);if(type==='all')return inQ;return inQ&&p.title.toLowerCase().includes(type)});renderProperties(filtered)});
+    renderProperties(properties);
+  </script>
 </body>
 </html>

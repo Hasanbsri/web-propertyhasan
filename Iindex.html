@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PropertyFinder | Temukan Rumah Impian</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🏡 PropertyFinder</h1>
+    <input type="text" id="search" placeholder="Cari properti..." />
+    <button id="theme-toggle">🌙</button>
+  </header>
+
+  <main id="property-list">
+    <!-- Properti akan ditampilkan lewat JS -->
+  </main>
+
+  <!-- Modal Detail Properti -->
+  <div id="modal" class="hidden">
+    <div class="modal-content">
+      <span id="close-modal">&times;</span>
+      <img id="modal-img" src="" alt="">
+      <h2 id="modal-title"></h2>
+      <p id="modal-location"></p>
+      <p id="modal-price"></p>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 PropertyFinder. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
